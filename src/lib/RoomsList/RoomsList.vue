@@ -130,12 +130,15 @@ export default {
 		loadingMoreRooms(val) {
 			this.$emit('loading-more-rooms', val)
 		},
-		roomsLoaded(val) {
-			if (val) {
-				this.loadingMoreRooms = false
+		roomsLoaded: {
+			immediate: true,
+			handler(val) {
+				if (val) {
+					this.loadingMoreRooms = false
 
-				if (!this.loadingRooms) {
-					this.showLoader = false
+					if (!this.loadingRooms) {
+						this.showLoader = false
+					}
 				}
 			}
 		},
